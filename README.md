@@ -6,7 +6,7 @@ Display real-time Air Quality Index (AQI) data on your [Quote/0](https://dot.min
 
 ## Features
 
-- 🌫️ Real-time AQI data from [彩云天气 API](https://caiyunapp.com/)
+- 🌫️ Real-time AQI data from [彩云天气 API](https://platform.caiyunapp.com)
 - 🇨🇳 🇺🇸 Dual AQI standards (China & USA) with localized descriptions
 - 📊 With 3-hour forecast at a glance
 - 🖼️ Optimized rendering for Quote/0's 296×152 e-ink display
@@ -16,7 +16,7 @@ Display real-time Air Quality Index (AQI) data on your [Quote/0](https://dot.min
 
 - [uv](https://docs.astral.sh/uv/) package manager
 - A [Quote/0 device](https://dot.mindreset.tech/docs/quote_0) with [Image API](https://dot.mindreset.tech/docs/service/studio/api/image_api) enabled
-- [彩云天气 API](https://caiyunapp.com/) credentials
+- [彩云天气 API](https://platform.caiyunapp.com) credentials
 
 ## Installation
 
@@ -40,12 +40,13 @@ latitude = 31.188334
 poi = "徐汇区"  # Point of Interest name displayed on screen
 
 # 彩云天气 API credentials
-# Get your API key at https://caiyunapp.com/
+# Get your API key at https://platform.caiyunapp.com
 caiyun_app_key = "your_caiyun_app_key"
 caiyun_app_secret = "your_caiyun_app_secret"
 
 # Quote/0 API credentials
-# Get your API key at https://dot.mindreset.tech/docs/service/studio/api/get_api_key
+# Get your API key at https://dot.mindreset.tech/docs/service/studio/api/get_api
+# Get your device ID at https://dot.mindreset.tech/docs/service/studio/api/get_device_id
 dot_api_key = "dot_app_xxxxx"
 dot_quote0_device_id = "YOUR_DEVICE_ID"
 dot_quote0_link = "https://example.com"  # Optional: NFC tap redirect URL
@@ -107,7 +108,7 @@ The generated image displays:
 
 - [Quote/0 Device](https://dot.mindreset.tech/docs/quote_0)
 - [Image API Documentation](https://dot.mindreset.tech/docs/service/studio/api/image_api)
-- [彩云天气 API](https://caiyunapp.com/)
+- [彩云天气 API](https://platform.caiyunapp.com)
 
 ## License
 
