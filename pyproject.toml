@@ -3,9 +3,7 @@ name = "quote-aqi"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-authors = [
-    { name = "Kainan Zhu", email = "dlangu0393@gmail.com" }
-]
+authors = [{ name = "Kainan Zhu", email = "dlangu0393@gmail.com" }]
 requires-python = ">=3.14"
 dependencies = [
     "icecream>=2.1.8",
@@ -18,7 +16,7 @@ dependencies = [
 ]
 
 [project.scripts]
-quote-aqi = "quote_aqi:main"
+quote-aqi = "quote_aqi.main:main"
 
 [build-system]
 requires = ["uv_build>=0.9.16,<0.10.0"]
