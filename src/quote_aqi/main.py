@@ -5,7 +5,7 @@ from datetime import datetime
 
 from loguru import logger
 from PIL import Image
-from tenacity import retry, stop_after_attempt, wait_exponential, wait_random
+from tenacity import retry, stop_after_attempt, wait_random
 
 from quote_aqi.caiyunapp import CaiYunClientV26, HourlyResponse
 from quote_aqi.config import Settings
