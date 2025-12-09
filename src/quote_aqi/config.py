@@ -21,6 +21,10 @@ class Settings(BaseSettings):
     caiyun_app_key: str
     caiyun_app_secret: str
 
+    dot_api_key: str
+    dot_quote0_device_id: str
+    dot_quote0_link: str | None = None
+
     model_config = SettingsConfigDict(
         env_prefix="QUOTE_AQI_",
         env_file=".env",

@@ -6,7 +6,6 @@ import urllib.parse
 import uuid
 
 import requests
-from icecream import ic
 from pydantic import BaseModel
 
 Longitude = float
@@ -77,12 +76,13 @@ class CaiYunClientV26:
     BASE_URL = "https://api.caiyunapp.com"
     PATH_PREFIX = "/v2.6"
 
-    def __init__(self, app_key: str, app_secret: str):
+    def __init__(self, app_key: str, app_secret: str, timeout: float = 10):
         self.app_key = app_key
         self.app_secret = app_secret
         self.path_prefix = self.PATH_PREFIX + "/" + app_key
         self.base_url = self.BASE_URL + self.path_prefix
         self.session = requests.Session()
+        self.timeout = timeout
 
     def _sign(
         self, method: str, path: str, nonce: str, timestamp: str, query: dict[str, str]
@@ -127,7 +127,10 @@ class CaiYunClientV26:
             "x-cy-timestamp": timestamp,
             "x-cy-signature": signature,
         }
-        response = self.session.request(method, url, headers=headers, params=query)
+        response = self.session.request(
+            method, url, headers=headers, params=query, timeout=self.timeout
+        )
+        response.raise_for_status()
         return response
 
     def _get(self, path: str, query: dict[str, str]) -> requests.Response:
@@ -138,7 +141,6 @@ class CaiYunClientV26:
             "hourlysteps": str(hourlysteps),
         }
         response = self._get(f"/{location[0]},{location[1]}/weather", query)
-        ic(response.json())
         return WeatherResponse.model_validate_json(response.content)
 
     def get_hourly(self, location: Location, hourlysteps=4) -> HourlyResponse:
@@ -146,5 +148,4 @@ class CaiYunClientV26:
             "hourlysteps": str(hourlysteps),
         }
         response = self._get(f"/{location[0]},{location[1]}/hourly", query)
-        ic(response.json())
         return HourlyResponse.model_validate_json(response.content)

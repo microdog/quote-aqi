@@ -45,7 +45,15 @@ def round_half_hour(dt: datetime) -> datetime:
     return round_datetime(dt, timedelta(minutes=30))
 
 
-def draw_text_psd_style(draw, xy, text, font, tracking=0, leading=None, **kwargs):
+def draw_text_psd_style(
+    draw,
+    xy: tuple[float, float],
+    text: str,
+    font,
+    tracking: float = 0,
+    leading: float | None = None,
+    **kwargs,
+) -> None:
     """
     usage: draw_text_psd_style(draw, (0, 0), "Test",
                 tracking=-0.1, leading=32, fill="Blue")
@@ -62,25 +70,25 @@ def draw_text_psd_style(draw, xy, text, font, tracking=0, leading=None, **kwargs
     is strictly proportional to the current type size.
     """
 
-    def stutter_chunk(lst, size, overlap=0, default=None):
+    def stutter_chunk(
+        lst: str, size: int, overlap: int = 0, default: str = " "
+    ):
         for i in range(0, len(lst), size - overlap):
             r = list(lst[i : i + size])
             while len(r) < size:
                 r.append(default)
             yield r
 
-    x, y = xy
-    font_size = font.size
+    x: float = xy[0]
+    y: float = xy[1]
+    font_size: float = font.size
     lines = text.splitlines()
-    if leading is None:
-        leading = font.size * 1.2
+    actual_leading: float = leading if leading is not None else font.size * 1.2
     for line in lines:
         for a, b in stutter_chunk(line, 2, 1, " "):
             w = font.getlength(a + b) - font.getlength(b)
-            # dprint("[debug] kwargs")
-            print("[debug] kwargs:{}".format(kwargs))
 
             draw.text((x, y), a, font=font, **kwargs)
             x += w + (tracking / 1000) * font_size
-        y += leading
+        y += actual_leading
         x = xy[0]
