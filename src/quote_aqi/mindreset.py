@@ -1,4 +1,5 @@
 from enum import IntEnum, StrEnum
+from urllib.parse import quote
 
 import requests
 from pydantic import BaseModel, Field
@@ -58,9 +59,15 @@ class DotClient:
         self.timeout = timeout
 
     def image_api(self, request: ImageAPIRequest) -> ImageAPIResponse:
+        device_id = quote(request.deviceId, safe="")
+        payload = request.model_dump(
+            exclude={"deviceId"},
+            exclude_none=True,
+            by_alias=True,
+        )
         response = self.session.post(
-            f"{self.BASE_URL}/api/open/image",
-            json=request.model_dump(exclude_none=True),
+            f"{self.BASE_URL}/api/authV2/open/device/{device_id}/image",
+            json=payload,
             timeout=self.timeout,
         )
         response.raise_for_status()

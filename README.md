@@ -15,7 +15,7 @@ Display real-time Air Quality Index (AQI) data on your [Quote/0](https://dot.min
 ## Prerequisites
 
 - [uv](https://docs.astral.sh/uv/) package manager
-- A [Quote/0 device](https://dot.mindreset.tech/docs/quote_0) with [Image API](https://dot.mindreset.tech/docs/service/studio/api/image_api) enabled
+- A [Quote/0 device](https://dot.mindreset.tech/docs/quote_0) with [Image API](https://dot.mindreset.tech/docs/service/open/image_api) enabled
 - [彩云天气 API](https://platform.caiyunapp.com) credentials
 
 ## Installation
@@ -107,7 +107,7 @@ The generated image displays:
 ## Related Links
 
 - [Quote/0 Device](https://dot.mindreset.tech/docs/quote_0)
-- [Image API Documentation](https://dot.mindreset.tech/docs/service/studio/api/image_api)
+- [Image API Documentation](https://dot.mindreset.tech/docs/service/open/image_api)
 - [彩云天气 API](https://platform.caiyunapp.com)
 
 ## License
